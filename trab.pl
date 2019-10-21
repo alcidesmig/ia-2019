@@ -36,8 +36,8 @@ s(
 ) :- 
 	pertence((I, J), Fogos), 							% Existe fogo na posição atual
 	remove_elem((I, J), Fogos, NovoFogos),				% Remove o fogo da lista
-	NovoCargasExtintor is CargasExtintor - 1,			% Usa carga do extintor
-	CargasExtintor > 0.									% se tiver para ser usada
+	NovoCargasExtintor is CargasExtintor - 1.			% Usa carga do extintor
+	%CargasExtintor > 0. 								% Não precisa verificar, verificação feita antes		
 
 % Pega extintor
 s(
@@ -66,6 +66,12 @@ s(
 			NJ = NovoJ + 1,
 			livre(I, NJ, Fogos))			% Mas a posterior está livre Obs: posições inválidas contam como livres
 		)
+		,
+		(
+			not(pertence((I, J), Fogos))
+			;
+			(pertence((I, J), Fogos), CargasExtintor > 0)
+		)
 	).
 
 % Movimentacao horizontal - esquerda
@@ -83,6 +89,11 @@ s(
 			(pedra(I, NovoJ),				% Existe pedra na nova posição
 			NJ = NovoJ - 1,
 			livre(I, NJ, Fogos))			% Mas a posterior está livre Obs: posições inválidas contam como livres
+		),
+		(
+			not(pertence((I, J), Fogos))
+			;
+			(pertence((I, J), Fogos), CargasExtintor > 0)
 		)
 	).
 

@@ -11,6 +11,15 @@ livre(I, J, Fogos) :-
 	not(bloqueio(I, J)),
 	not(pertence((I, J), Fogos)).
 
+andarPedra(I, J, Fogos) :- 							% Verifica se pode andar (em relação a pedra)
+	not(pedra(I, J))  								% Não existe pedra na próxima posição
+	;												% ou
+	(
+		pedra(I, J),								% Existe pedra na nova posição
+		NJ = NovoJ + 1,
+		livre(I, NJ, Fogos)							% Mas a posterior está livre. Obs: posições inválidas contam como livres
+	).
+
 % Apaga fogo
 s(
 	(I, J, Fogos, CargasExtintor, Extintores),
@@ -39,16 +48,8 @@ s(
 ) :-
 	NovoJ is J + 1,							% NovoJ é J + 1
 	limiteJ(NovoJ), 						% Novo J está dentro da matriz
-	not(bloqueio(I, NovoJ)),
-	(	
-		(
-			not(pedra(I, NovoJ))			% Não existe pedra na próxima posição
-			;								% Ou
-			(pedra(I, NovoJ),				% Existe pedra na nova posição
-			NJ = NovoJ + 1,
-			livre(I, NJ, Fogos))			% Mas a posterior está livre Obs: posições inválidas contam como livres
-		)
-	).
+	not(bloqueio(I, NovoJ)),				% Verifica se não tem bloqueio
+	andarPedra(I, NovoJ, Fogos).			% Verifica se pode andar em relação a possível pedra
 
 % Movimentacao horizontal - esquerda
 s(
@@ -58,16 +59,8 @@ s(
 	NovoJ is J - 1,							% NovoJ é J - 1
 	limiteJ(NovoJ), 						% Novo J está dentro da matriz
 	not(bloqueio(I, NovoJ)), 				% Não existe bloqueio na próxima posição
-	(	
-		(
-			not(pedra(I, NovoJ))			% Não existe pedra na próxima posição
-			;								% Ou
-			(pedra(I, NovoJ),				% Existe pedra na nova posição
-			NJ = NovoJ - 1,
-			livre(I, NJ, Fogos))			% Mas a posterior está livre Obs: posições inválidas contam como livres
-		)
-	).
-
+	not(bloqueio(I, NovoJ)),				% Verifica se não tem bloqueio
+	andarPedra(I, NovoJ, Fogos).			% Verifica se pode andar em relação a possível pedra
 
 
 % Movimentação vertical - baixo

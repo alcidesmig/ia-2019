@@ -16,7 +16,7 @@ s(
 	(I, J, Fogos, CargasExtintor, Extintores),
 	(I, J, NovoFogos, NovoCargasExtintor, Extintores)
 ) :- 
-	pertence((I, J), Fogos), write(I+ J), write(" "),							% Existe fogo na posição atual
+	pertence((I, J), Fogos), 							% Existe fogo na posição atual
 	remove_elem((I, J), Fogos, NovoFogos),				% Remove o fogo da lista
 	NovoCargasExtintor is CargasExtintor - 1,			% Usa carga do extintor
 	CargasExtintor > 0.									% se tiver para ser usada

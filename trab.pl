@@ -1,10 +1,10 @@
 % Limites da matriz
-limiteI(X) :- X < 5, X >= 0.
-limiteJ(X) :- X < 10, X >= 0.
+limiteI(X) :- X < 5, X >= 0.						% Estipula o limite de linhas
+limiteJ(X) :- X < 10, X >= 0.						% Estipula o limite de colunas
 
 meta((_, _, [], _, _)).
 
-livre(I, J, Fogos) :- 
+livre(I, J, Fogos) :-								% Verifica se existe algum objeto na posição
 	not(pedra(I, J)),
 	not(escada(I - 1, J)),
 	not(escada(I, J)),
@@ -37,8 +37,8 @@ s(
 ) :-
 	pertence((I, J), Extintores),						% Existe extintor na posição atual
 	remove_elem((I, J), Extintores, NovoExtintores),	% Remove o extintor da lista
-	NovoCargasExtintor is 2,
-	CargasExtintor == 0.
+	NovoCargasExtintor is 2,							% Número de cargas do extintor vai para 2
+	CargasExtintor == 0.								% Só pega extintor se estiver sem cargas
 
 
 % Movimentacao horizontal - direita
@@ -69,7 +69,7 @@ s(
 	(NovoI, J, Fogos, CargasExtintor, Extintores)
 ) :- NovoI is I + 1,
 	escada(I, J),							% Vai para baixo se tiver escada para usar
-	limiteI(NovoI).
+	limiteI(NovoI).							% Verifica limite do mapa
 
 % Movimentação vertical - cima
 s(
@@ -77,7 +77,7 @@ s(
 	(NovoI, J, Fogos, CargasExtintor, Extintores)
 ) :- NovoI is I - 1,
 	escada(NovoI, J),						% Vai para cima se tiver escada para usar
-	limiteI(NovoI).
+	limiteI(NovoI).							% Verifica limite do mapa
 
 
 /*

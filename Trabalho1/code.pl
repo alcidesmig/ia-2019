@@ -1,3 +1,22 @@
+% Ambiente João
+% solucao_bl((2, 0, [(1, 0), (0, 9), (1, 8), (2, 9), (3, 8), (4, 1)], 0, [(0, 0), (3, 0), (4, 7)]), X).
+
+escada(0, 1).
+escada(0, 6).
+escada(1, 5).
+escada(2, 4).
+escada(3, 5).
+escada(3, 9).
+
+bloqueio(4, 0).
+bloqueio(0, 5).
+bloqueio(4, 6).
+
+pedra(2, 2).
+pedra(4, 3).
+pedra(2, 7).
+
+
 % Limites da matriz
 limiteI(X) :- X < 5, X >= 0.						% Estipula o limite de linhas
 limiteJ(X) :- X < 10, X >= 0.						% Estipula o limite de colunas
@@ -173,3 +192,24 @@ pedra(3, 2).
 pedra(3, 9).
 pedra(4, 0).
 */
+
+/*
+% Ambiente João
+% solucao_bl((2, 0, [(1, 0), (0, 9), (1, 8), (2, 9), (3, 8), (4, 1)], 0, [(0, 0), (3, 0), (4, 7)]), X).
+
+escada(0, 1).
+escada(0, 6).
+escada(1, 5).
+escada(2, 4).
+escada(3, 5).
+escada(3, 9).
+
+bloqueio(4, 0).
+bloqueio(0, 5).
+bloqueio(4, 6).
+
+pedra(2, 2).
+pedra(4, 3).
+pedra(2, 7).
+*/
+

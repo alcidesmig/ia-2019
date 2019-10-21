@@ -1,24 +1,23 @@
-% Ambiente 4
-% solucao_bl((4, 0, [(2, 1), (4, 4), (0, 7)], 0, [(2, 5), (4, 6)]), X).
+% Ambiente 3
+% solucao_bl((4, 0, [(0, 1), (0, 7), (0, 9), (4, 9)], 0, [(1, 0), (2, 5)]), X).
 
-escada(0, 2).
-escada(0, 8).
-escada(1, 3).
-escada(1, 9).
 escada(2, 0).
-escada(2, 6).
-escada(3, 3).
+escada(0, 2).
+escada(1, 3).
+escada(3, 4).
+escada(2, 7).
 escada(3, 8).
+escada(1, 9).
 
 bloqueio(2, 4).
 bloqueio(4, 5).
 
-pedra(0, 1).
+pedra(4, 2).
+pedra(3, 2).
 pedra(0, 5).
 pedra(1, 5).
-pedra(3, 2).
-pedra(3, 9).
-pedra(4, 0).
+pedra(3, 5).
+pedra(3, 6).
 
 % Limites da matriz
 limiteI(X) :- X < 5, X >= 0.
@@ -38,7 +37,7 @@ s(
 	(I, J, Fogos, CargasExtintor, Extintores),
 	(I, J, NovoFogos, NovoCargasExtintor, Extintores)
 ) :- 
-	pertence((I, J), Fogos), 							% Existe fogo na posição atual
+	pertence((I, J), Fogos), write(I+ J), write(" "),							% Existe fogo na posição atual
 	remove_elem((I, J), Fogos, NovoFogos),				% Remove o fogo da lista
 	NovoCargasExtintor is CargasExtintor - 1,			% Usa carga do extintor
 	CargasExtintor > 0.									% se tiver para ser usada
@@ -157,7 +156,7 @@ pedra(4, 2).
 
 /*
 % Ambiente 3
-% solucao_bl((4, 0, [(0, 1), (0, 7), (0, 9), (3, 9), (4,9)], 0, [(1, 0), (2, 5)]), X).
+% solucao_bl((4, 0, [(0, 1), (0, 7), (0, 9), (4, 9)], 0, [(1, 0), (2, 5)]), X).
 
 escada(2, 0).
 escada(0, 2).

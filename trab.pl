@@ -1,24 +1,3 @@
-% Ambiente 3
-% solucao_bl((4, 0, [(0, 1), (0, 7), (0, 9), (4, 9)], 0, [(1, 0), (2, 5)]), X).
-
-escada(2, 0).
-escada(0, 2).
-escada(1, 3).
-escada(3, 4).
-escada(2, 7).
-escada(3, 8).
-escada(1, 9).
-
-bloqueio(2, 4).
-bloqueio(4, 5).
-
-pedra(4, 2).
-pedra(3, 2).
-pedra(0, 5).
-pedra(1, 5).
-pedra(3, 5).
-pedra(3, 6).
-
 % Limites da matriz
 limiteI(X) :- X < 5, X >= 0.
 limiteJ(X) :- X < 10, X >= 0.

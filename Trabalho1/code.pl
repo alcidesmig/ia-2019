@@ -77,8 +77,7 @@ s(
 ) :- 
 	NovoJ is J - 1,							% NovoJ é J - 1
 	limiteJ(NovoJ), 						% Novo J está dentro da matriz
-	not(bloqueio(I, NovoJ)), 				% Não existe bloqueio na próxima posição
-	not(bloqueio(I, NovoJ)),				% Verifica se não tem bloqueio
+	not(bloqueio(I, NovoJ)), 				% Não existe bloqueio na próxima posição				% Verifica se não tem bloqueio
 	andarPedra(I, NovoJ, Fogos).			% Verifica se pode andar em relação a possível pedra
 
 
@@ -212,4 +211,3 @@ pedra(2, 2).
 pedra(4, 3).
 pedra(2, 7).
 */
-

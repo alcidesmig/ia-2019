@@ -1,4 +1,4 @@
-% Auxiliar
+% Auxiliar ~ Disponibilizado por Murilo Naldi
 
 inverte_lista([], X, X).
 inverte_lista([X|Xs], Y, R) :-

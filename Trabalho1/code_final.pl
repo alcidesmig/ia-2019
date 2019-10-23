@@ -43,7 +43,6 @@ andarPedra(I, J, Fogos) :- 							% Verifica se pode andar (em relação a pedra
 		livre(I, NJE, Fogos)						% Mas as posições ao redor (horizonal) estão livres. Obs: posições inválidas contam como livres
 	).
 
-
 andarFogo(I, J, Fogos, CargasExtintor) :-
 	(
 		not(pertence((I, J), Fogos))				% Verifica se não existe fogo

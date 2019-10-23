@@ -32,22 +32,15 @@ livre(I, J, Fogos) :-								% Verifica se existe algum objeto na posição
 	not(bloqueio(I, J)),
 	not(pertence((I, J), Fogos)).
 
-andarPedraDir(I, J, Fogos) :- 							% Verifica se pode andar (em relação a pedra)
+andarPedra(I, J, Fogos) :- 							% Verifica se pode andar (em relação a pedra)
 	not(pedra(I, J))  								% Não existe pedra na próxima posição
 	;												% ou
 	(
 		pedra(I, J),								% Existe pedra na nova posição
-		NJ = I + 1,
-		livre(I, NJ, Fogos)							% Mas a posterior está livre. Obs: posições inválidas contam como livres
-	).
-
-andarPedraEsq(I, J, Fogos) :- 							% Verifica se pode andar (em relação a pedra)
-	not(pedra(I, J))  								% Não existe pedra na próxima posição
-	;												% ou
-	(
-		pedra(I, J),								% Existe pedra na nova posição
-		NJ = I - 1,
-		livre(I, NJ, Fogos)							% Mas a posterior está livre. Obs: posições inválidas contam como livres
+		NJD = I + 1,
+		livre(I, NJD, Fogos),
+		NJE = I - 1,
+		livre(I, NJE, Fogos)							% Mas a posterior está livre. Obs: posições inválidas contam como livres
 	).
 
 
@@ -94,7 +87,7 @@ s(
 	NovoJ is J + 1,								% NovoJ é J + 1
 	limiteJ(NovoJ), 							% Novo J está dentro da matriz
 	not(bloqueio(I, NovoJ)),					% Verifica se não existe bloqueio na próxima posição
-	andarPedraDir(I, NovoJ, Fogos),				% Verifica se pode andar em relação a possível pedra
+	andarPedra(I, NovoJ, Fogos),				% Verifica se pode andar em relação a possível pedra
 	andarFogo(I, NovoJ, Fogos, CargasExtintor).	% Verifica se não existe fogo, ou existe e tem carga para apagá-lo
 
 % Movimentacao horizontal - esquerda
@@ -105,7 +98,7 @@ s(
 	NovoJ is J - 1,								% NovoJ é J - 1
 	limiteJ(NovoJ), 							% Novo J está dentro da matriz
 	not(bloqueio(I, NovoJ)), 					% Verifica se não existe bloqueio na próxima posição				
-	andarPedraEsq(I, NovoJ, Fogos),				% Verifica se pode andar em relação a possível pedra
+	andarPedra(I, NovoJ, Fogos),				% Verifica se pode andar em relação a possível pedra
 	andarFogo(I, NovoJ, Fogos, CargasExtintor).	% Verifica se não existe fogo, ou existe e tem carga para apagá-lo
 
 

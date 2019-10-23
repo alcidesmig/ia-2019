@@ -40,7 +40,7 @@ andarPedra(I, J, Fogos) :- 							% Verifica se pode andar (em relação a pedra
 		NJD = I + 1,
 		livre(I, NJD, Fogos),
 		NJE = I - 1,
-		livre(I, NJE, Fogos)							% Mas a posterior está livre. Obs: posições inválidas contam como livres
+		livre(I, NJE, Fogos)						% Mas as posições ao redor (horizonal) estão livres. Obs: posições inválidas contam como livres
 	).
 
 
@@ -55,18 +55,15 @@ andarFogo(I, J, Fogos, CargasExtintor) :-
 	).
 
 
-
-
-
 % Apaga fogo
 s(
 	(I, J, Fogos, CargasExtintor, Extintores),
 	(I, J, NovoFogos, NovoCargasExtintor, Extintores)
 ) :- 
 	pertence((I, J), Fogos), 							% Existe fogo na posição atual
-	remove_elem((I, J), Fogos, NovoFogos),				% Remove o fogo da lista
 	NovoCargasExtintor is CargasExtintor - 1,			% Usa carga do extintor
-	CargasExtintor > 0.									% se tiver para ser usada
+	CargasExtintor > 0,									% se tiver para ser usada
+	remove_elem((I, J), Fogos, NovoFogos).				% Remove o fogo da lista
 
 % Pega extintor
 s(
@@ -74,9 +71,9 @@ s(
 	(I, J, Fogos, NovoCargasExtintor, NovoExtintores)
 ) :-
 	pertence((I, J), Extintores),						% Existe extintor na posição atual
-	remove_elem((I, J), Extintores, NovoExtintores),	% Remove o extintor da lista
 	NovoCargasExtintor is 2,							% Número de cargas do extintor vai para 2
-	CargasExtintor == 0.								% Só pega extintor se estiver sem cargas
+	CargasExtintor == 0,								% Só pega extintor se estiver sem cargas
+	remove_elem((I, J), Extintores, NovoExtintores).	% Remove o extintor da lista
 
 
 % Movimentacao horizontal - direita
